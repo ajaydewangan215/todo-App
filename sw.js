@@ -28,8 +28,7 @@ if( this.location.hostname === 'localhost'){
         '/todo-App/static/css/main.8fd52917.chunk.css',
         '/todo-App/static/js/2.ec554d33.chunk.js',
         '/todo-App/static/js/main.45159212.chunk.js',
-        '/todo-App/favicon.ico',
-        '/todo-App/logo192.png',
+        '/todo-App/favicon.ico',     
         '/todo-App/manifest.json'
     ]
 }
