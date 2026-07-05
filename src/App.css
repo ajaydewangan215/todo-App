@@ -19,13 +19,13 @@
   font-size: 85%;
 }
 
-.input-field, .itemlist{
+.input-field, .itemlist, .search-box{
   position: relative;
-  width: 20rem;
+  width: 22rem;
   margin: auto;
 }
 
-.input-field input{
+.input-field input, .search-box input{
   height: 2rem;
   border-radius: .2rem;
   border: 1px solid #eee;
@@ -41,6 +41,7 @@
   right: 0;
   color: #000;
   cursor: pointer;
+  font-size: 1rem;
 }
 
 .item{
@@ -49,9 +50,38 @@
   background: white;
   border-radius: .2rem;
   text-align: initial;
-  padding: 4px 10px;
+  padding: 0.7rem 0.85rem;
   width: 100%;
   margin: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 3rem;
+}
+
+.item.completed {
+  background: #e8f5e9;
+}
+
+.task-label {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex: 1;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.task-label input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  accent-color: #2e7d32;
+}
+
+.task-label span {
+  font-size: 1rem;
+  word-break: break-word;
 }
 
 .itemlist .remove-btn{
@@ -63,6 +93,44 @@
   right: 1.8rem;
   top:0.5rem;
   cursor: pointer;
+  font-size: 1rem;
+}
+
+.filter-row, .stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0.5rem auto 0.8rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+}
+
+.filter-btn.active {
+  background: #61dafb;
+  color: #000;
+}
+
+.stats-row {
+  font-size: 0.8rem;
+  color: #ddd;
+}
+
+.empty-state {
+  color: #666;
+  text-align: center;
+  padding: 0.8rem 0;
+}
+
+.clear-completed {
+  margin-right: 0.5rem;
+  border-color: #ff8f00;
+  color: #ff8f00;
 }
 
 .item:hover{
@@ -74,12 +142,14 @@
 .button {
   position: relative;
   margin-top: 1em;
-  padding: 1em;
+  padding: 0.75em 1em;
   border: 2px solid #FFF;
   overflow: hidden;
   outline: none;
   color: #FFF;
   background: transparent;
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
 }
 
 .button span {
