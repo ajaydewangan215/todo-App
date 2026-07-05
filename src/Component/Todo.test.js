@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom'
 import { fireEvent, render, screen } from '@testing-library/react'
 import Todo from './Todo'
 
@@ -25,7 +26,26 @@ describe('Todo component', () => {
         fireEvent.click(screen.getByRole('button', { name: /active/i }))
         expect(screen.queryByText('Buy groceries')).not.toBeInTheDocument()
 
-        fireEvent.click(screen.getByRole('button', { name: /all/i }))
+        fireEvent.click(screen.getByRole('button', { name: /^all$/i }))
         expect(screen.getByText('Buy groceries')).toBeInTheDocument()
+    })
+
+    test('shows the search field only after more than 10 tasks and displays the created date', () => {
+        render(<Todo />)
+
+        const input = screen.getByPlaceholderText(/add here/i)
+
+        for (let i = 1; i <= 10; i += 1) {
+            fireEvent.change(input, { target: { value: `Task ${i}` } })
+            fireEvent.click(screen.getByTitle(/add item/i))
+        }
+
+        expect(screen.queryByPlaceholderText(/search todos/i)).not.toBeInTheDocument()
+
+        fireEvent.change(input, { target: { value: 'Task 11' } })
+        fireEvent.click(screen.getByTitle(/add item/i))
+
+        expect(screen.getByPlaceholderText(/search todos/i)).toBeInTheDocument()
+        expect(screen.getAllByText(/created/i).length).toBeGreaterThan(0)
     })
 })

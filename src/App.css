@@ -10,15 +10,6 @@
   color: white;
 }
 
-.container img{
-  filter: invert(1);
-  width: 8rem;
-}
-
-.container figcaption{
-  font-size: 85%;
-}
-
 .input-field, .itemlist, .search-box{
   position: relative;
   width: 22rem;
@@ -65,7 +56,7 @@
 
 .task-label {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.55rem;
   flex: 1;
   font-size: 1rem;
@@ -76,12 +67,25 @@
   width: 1rem;
   height: 1rem;
   flex-shrink: 0;
+  margin-top: 0.2rem;
   accent-color: #2e7d32;
 }
 
-.task-label span {
+.task-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.task-content span {
   font-size: 1rem;
   word-break: break-word;
+}
+
+.created-date {
+  color: #666;
+  font-size: 0.8rem;
 }
 
 .itemlist .remove-btn{

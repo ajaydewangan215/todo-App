@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import Todoimage from '../images.png'
 
 // to get data from local Storage
 const localStorageItem = ()=>{
@@ -90,10 +89,7 @@ const Todo = () => {
     return (
         <>
             <div className="container">
-                <figure>
-                    <img src={Todoimage} alt="logo" />
-                    <figcaption>Add Your Task</figcaption>
-                </figure>
+                <h1>Add Your Task</h1>
 
                 <div className="input-field">
                     <input type="text" placeholder="Add Here.."
@@ -106,9 +102,11 @@ const Todo = () => {
 
                 {item.length > 0 && (
                     <>
-                        <div className="search-box">
-                            <input type="text" placeholder="Search todos.." value={searchTerm} onChange={(e)=>setSearchTerm(e.target.value)} />
-                        </div>
+                        {item.length > 10 && (
+                            <div className="search-box">
+                                <input type="text" placeholder="Search todos.." value={searchTerm} onChange={(e)=>setSearchTerm(e.target.value)} />
+                            </div>
+                        )}
 
                         <div className="filter-row">
                             <button type="button" className={filter === 'all' ? 'filter-btn active' : 'filter-btn'} onClick={()=>setFilter('all')}>All</button>
@@ -129,9 +127,12 @@ const Todo = () => {
                     filteredItems.length > 0 ? filteredItems.map( (elem, idx) => {
                         return (
                             <div className={`item ${elem.completed ? 'completed' : ''}`} key={elem.id}>
-                                                <label className="task-label">
+                                <label className="task-label">
                                     <input type="checkbox" checked={elem.completed} onChange={()=>toggleComplete(elem.id)} />
-                                    <span>{elem.data}</span>
+                                    <div className="task-content">
+                                        <span>{elem.data}</span>
+                                        <small className="created-date">Created: {elem.createdAt || 'Unknown'}</small>
+                                    </div>
                                 </label>
                                 <i className="fas fa-edit edit-item" onClick={()=>editItem(elem.id)}></i>
                                 <i className="fas fa-times remove-btn" 
